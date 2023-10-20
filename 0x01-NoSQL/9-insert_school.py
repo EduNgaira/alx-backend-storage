@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
-""" Module for using PyMongo """
+"""
+Insert a new document in a collection based on kwargs
+Prototype: def insert_school(mongo_collection, **kwargs):
+mongo_collection will be pymongo collection object
+Returns new _id
+"""
 
 
-def update_topics(mongo_collection, name, topics):
-    """function that changes all topics of a school
-    document based on name"""
-    mongo_collection.update_many(
-        {"name": name},
-        {"$set": {"topics": topics}}
-    )
+def insert_school(mongo_collection, **kwargs):
+    """
+    Prototype: def insert_school(mongo_collection, **kwargs):
+    Returns the new _id
+    """
+    new_document = mongo_collection.insert_one(kwargs)
+    return new_document.inserted_id
